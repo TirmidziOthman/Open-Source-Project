@@ -1,0 +1,40 @@
+{
+  "name": "croncraft",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Interactive visual cron expression builder & next-run predictor",
+  "keywords": [
+    "cron",
+    "cron-expression",
+    "cron-builder",
+    "react",
+    "typescript"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.2",
+    "vite": "^6.0.1",
+    "vitest": "^2.1.6",
+    "@vitest/coverage-v8": "^2.1.6"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true,
+    "esbuild@0.21.5": true
+  }
+}

@@ -1,0 +1,202 @@
+/* ── Reset & base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0f1117;
+  --surface:   #1a1d2e;
+  --surface2:  #242740;
+  --border:    #2e3353;
+  --accent:    #6c63ff;
+  --accent2:   #a78bfa;
+  --ok:        #22c55e;
+  --err:       #f87171;
+  --text:      #e2e8f0;
+  --muted:     #94a3b8;
+  --radius:    10px;
+  --radius-sm: 6px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 4rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+header p { color: var(--muted); margin-top: 0.4rem; font-size: 0.95rem; }
+
+.card {
+  width: 100%;
+  max-width: 760px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.card-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.9rem;
+}
+
+/* ── Cron input ───────────────────────────────────────────────────────────── */
+.cron-input-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+.cron-input {
+  flex: 1;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 0.6rem 1rem;
+  outline: none;
+  transition: border-color 0.15s;
+  letter-spacing: 0.05em;
+}
+.cron-input:focus { border-color: var(--accent); }
+.cron-input.error { border-color: var(--err); }
+.cron-input.ok    { border-color: var(--ok); }
+
+.copy-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+}
+.copy-btn:hover { background: var(--border); }
+.copy-btn.copied { border-color: var(--ok); color: var(--ok); }
+
+/* ── Banner ───────────────────────────────────────────────────────────────── */
+.banner {
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.banner.ok  { background: rgba(34,197,94,0.1);  border: 1px solid rgba(34,197,94,0.3);  color: var(--ok); }
+.banner.err { background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); color: var(--err); }
+
+/* ── Field labels ─────────────────────────────────────────────────────────── */
+.field-labels {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+.field-label { font-size: 0.65rem; color: var(--muted); text-align: center; margin-bottom: 0.1rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.field-input {
+  width: 100%;
+  text-align: center;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 0.4rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.field-input:focus { border-color: var(--accent); }
+
+/* ── Presets ──────────────────────────────────────────────────────────────── */
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.preset-btn {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.preset-btn:hover { background: var(--accent); border-color: var(--accent); }
+.preset-btn.active { background: var(--accent); border-color: var(--accent); font-weight: 700; }
+
+/* ── Next runs ────────────────────────────────────────────────────────────── */
+.runs-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+.runs-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+}
+.run-index {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.run-time { font-family: 'JetBrains Mono', monospace; color: var(--text); }
+.run-relative { color: var(--muted); font-size: 0.8rem; }
+
+/* ── Empty / muted states ─────────────────────────────────────────────────── */
+.muted { color: var(--muted); font-size: 0.88rem; }
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+footer {
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-align: center;
+}
+footer a { color: var(--accent2); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .cron-input { font-size: 1rem; }
+  header h1 { font-size: 1.7rem; }
+}
